@@ -209,12 +209,17 @@
             if(isClickable){
                 var choiceAnchorEl = choiceParagraphElement.querySelectorAll("a")[0];
                 choiceAnchorEl.addEventListener("click", function(event) {
+        event.preventDefault(); // Prevents default link behavior
 
         // Google Analytics tracking for choices
         gtag('event', 'choice_selected', {
             'event_category': 'Story Choice',
-            'event_label': choice.text
+            'event_label': choiceAnchorEl.innerText
         });
+
+        // Continue the story normally
+        continueStory(choiceAnchorEl.getAttribute("data-target"));
+    });
 
                     // Don't follow <a> link
                     event.preventDefault();
