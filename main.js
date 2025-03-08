@@ -217,8 +217,11 @@
             'event_label': choiceAnchorEl.innerText
         });
 
-        // Continue the story normally
-        continueStory(choiceAnchorEl.getAttribute("data-target"));
+        // Ensure the story continues after clicking a choice
+        var targetPassage = choiceAnchorEl.getAttribute("data-target");
+        if (targetPassage) {
+            showPassage(targetPassage);
+        }
     });
 
                     // Don't follow <a> link
